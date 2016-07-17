@@ -1,0 +1,3 @@
+# Calculating Probability using Binary Logistic Regression
+
+This is an example of a Shiny appication devised for the Coursera `Developing Data Products`. In this report I develop a  generalized linear model that to  estimate the probability of a vehicle having a `V-engine` or a `straight engine` using the user-defined a weight (lbs) and engine displacement values (cu. inches). Generalized linear or regression is useful when you are predicting a binary outcome (i.e. `V-engine` or `straight engine` in this example) from a set of continuous predictor variables. The data for this project (`mtcars`) was published in the *1974 Motor Trend US magazine*, and is comprised of fuel consumption, performance and physical features for 32 automobiles.

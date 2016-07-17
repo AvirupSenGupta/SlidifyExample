@@ -1,0 +1,61 @@
+---
+title       : Calculating Probability of a binary outcome using Binary Logistic Regression
+subtitle    : Data Product Project on Coursera from Johns Hopkins University
+author      : Avirup Sen Gupta
+job         : Data Scientist
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+
+## Project Description
+
+1. A generalized linear model that to  estimate the probability of a vehicle having a `V-engine` or a `straight engine` using the user-defined a weight (lbs) and engine displacement values (cu. inches). 
+2. Generalized linear or regression is useful when you are predicting a binary outcome (i.e. `V-engine` or `straight engine` in this example) from a set of continuous predictor variables. 
+3. The data for this project (`mtcars`) was published in the *1974 Motor Trend US magazine*, and is comprised of fuel consumption, performance and physical features for 32 automobiles.
+
+--- .class #id 
+
+## Data
+
+```{R}
+data(mtcars)
+par(mfrow = c(2, 2))
+plot(mtcars$disp, mtcars$vs, xlab = "Displacement (cu. in)", ylab = "Engine type", 
+     col ="red", pch = 20)
+plot(mtcars$disp, mtcars$vs, xlab = "Weight (1000 lb)", ylab = "Engine type", 
+     col ="red", pch = 20)
+```
+
+--- .class #id 
+
+## generalized linear model
+```{R}
+  data(mtcars)
+	model = glm(formula= vs ~ wt + disp, data=mtcars, family=binomial)
+  summary(model)
+```
+
+--- .class #id 
+
+## Making probability prediction
+Our goal here is to calculate a predicted probability of a V engine, for specific values of the predictors: 
+ 1. a weight of 2100 lbs and 
+ 2. engine displacement of 180 cubic inches.
+
+```{R}
+  wt = 1.2
+  disp = 180 
+  data(mtcars)
+  model = glm(formula= vs ~ wt + disp, data=mtcars, family=binomial)
+  newdata = data.frame(wt = wt, disp = disp)
+  prob = predict(model, newdata, type="response")
+```
+The predicted probability is `r prob`
+
+
+
